@@ -14,8 +14,10 @@
 		262AFB6620201C710012E16C /* WorldTrollerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262AFB6520201C710012E16C /* WorldTrollerTests.swift */; };
 		262AFB7120201C710012E16C /* WorldTrollerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262AFB7020201C710012E16C /* WorldTrollerUITests.swift */; };
 		266B8138202AC7BD00524DF0 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266B8137202AC7BD00524DF0 /* WebViewController.swift */; };
+		26A5BA7D2030BD29003679B1 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26A5BA7C2030BD29003679B1 /* CoreLocation.framework */; };
 		26C2913C2020353C00644B6C /* ConversionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C2913B2020353C00644B6C /* ConversionViewController.swift */; };
-		26CBB5CE202EEA3A009ADCA1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 26CBB5CD202EEA3A009ADCA1 /* Localizable.strings */; };
+		26CBB5D1202EEF58009ADCA1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 26CBB5CF202EEF57009ADCA1 /* Localizable.strings */; };
+		26CBB5D7202EF6C9009ADCA1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 26CBB5D9202EF6C9009ADCA1 /* Localizable.strings */; };
 		26D04483202960D800541470 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26D04482202960D800541470 /* MapKit.framework */; };
 		26D044852029641400541470 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D044842029641400541470 /* MapViewController.swift */; };
 /* End PBXBuildFile section */
@@ -51,11 +53,13 @@
 		262AFB7020201C710012E16C /* WorldTrollerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldTrollerUITests.swift; sourceTree = "<group>"; };
 		262AFB7220201C710012E16C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		266B8137202AC7BD00524DF0 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		26A5BA7C2030BD29003679B1 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		26C2913B2020353C00644B6C /* ConversionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionViewController.swift; sourceTree = "<group>"; };
 		26CBB5CA202ED710009ADCA1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		26CBB5CB202ED963009ADCA1 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
 		26CBB5CC202EE0EF009ADCA1 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Main.strings; sourceTree = "<group>"; };
-		26CBB5CD202EEA3A009ADCA1 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = WorldTroller/Localizable.strings; sourceTree = "<group>"; };
+		26CBB5D0202EEF57009ADCA1 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = WorldTroller/es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		26CBB5D8202EF6C9009ADCA1 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		26D04482202960D800541470 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		26D044842029641400541470 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -65,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26A5BA7D2030BD29003679B1 /* CoreLocation.framework in Frameworks */,
 				26D04483202960D800541470 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -89,7 +94,6 @@
 		262AFB4420201C710012E16C = {
 			isa = PBXGroup;
 			children = (
-				26CBB5CD202EEA3A009ADCA1 /* Localizable.strings */,
 				262AFB4F20201C710012E16C /* WorldTroller */,
 				262AFB6420201C710012E16C /* WorldTrollerTests */,
 				262AFB6F20201C710012E16C /* WorldTrollerUITests */,
@@ -113,6 +117,8 @@
 			children = (
 				262AFB5020201C710012E16C /* AppDelegate.swift */,
 				262AFB5420201C710012E16C /* Main.storyboard */,
+				26CBB5CF202EEF57009ADCA1 /* Localizable.strings */,
+				26CBB5D9202EF6C9009ADCA1 /* Localizable.strings */,
 				266B8137202AC7BD00524DF0 /* WebViewController.swift */,
 				26D044842029641400541470 /* MapViewController.swift */,
 				262AFB5720201C710012E16C /* Assets.xcassets */,
@@ -144,6 +150,7 @@
 		26D04481202960D800541470 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				26A5BA7C2030BD29003679B1 /* CoreLocation.framework */,
 				26D04482202960D800541470 /* MapKit.framework */,
 			);
 			name = Frameworks;
@@ -238,6 +245,8 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
+				vi,
 			);
 			mainGroup = 262AFB4420201C710012E16C;
 			productRefGroup = 262AFB4E20201C710012E16C /* Products */;
@@ -256,8 +265,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26CBB5D7202EF6C9009ADCA1 /* Localizable.strings in Resources */,
 				262AFB5B20201C710012E16C /* LaunchScreen.storyboard in Resources */,
-				26CBB5CE202EEA3A009ADCA1 /* Localizable.strings in Resources */,
+				26CBB5D1202EEF58009ADCA1 /* Localizable.strings in Resources */,
 				262AFB5820201C710012E16C /* Assets.xcassets in Resources */,
 				262AFB5620201C710012E16C /* Main.storyboard in Resources */,
 			);
@@ -342,6 +352,22 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		26CBB5CF202EEF57009ADCA1 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				26CBB5D0202EEF57009ADCA1 /* es */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		26CBB5D9202EF6C9009ADCA1 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				26CBB5D8202EF6C9009ADCA1 /* vi */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -400,6 +426,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 			};
 			name = Debug;
 		};
@@ -450,6 +477,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

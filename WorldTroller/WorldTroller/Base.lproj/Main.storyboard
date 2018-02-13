@@ -87,11 +87,15 @@
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="Bk0-Ol-tT4" secondAttribute="trailing" id="qyb-lW-YZg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="8pu-64-Cb3" appends="YES" id="YyD-fF-nM4"/>
+                        </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="Convert" image="ConvertIcon" id="pcc-YD-BTX"/>
                     <connections>
                         <outlet property="celsiusLabel" destination="Kqm-2m-5lm" id="dke-Pd-f9K"/>
                         <outlet property="isreallyLabel" destination="Bk0-Ol-tT4" id="TKi-C7-2UD"/>
+                        <outlet property="textField" destination="NzJ-EW-0Vp" id="Cgx-9P-h4T"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -120,7 +124,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="VyK-zJ-7cd"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Web" id="fNB-8K-v1l"/>
+                    <tabBarItem key="tabBarItem" title="Web" image="Webicon" selectedImage="Webicon" id="fNB-8K-v1l"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wgK-pP-vri" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -150,5 +154,6 @@
     <resources>
         <image name="ConvertIcon" width="48" height="32"/>
         <image name="MapIcon" width="48" height="32"/>
+        <image name="Webicon" width="25" height="25"/>
     </resources>
 </document>

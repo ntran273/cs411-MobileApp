@@ -1,0 +1,8 @@
+<key>NSLocationWhenInUseUsageDescription</key>
+<string>Description</string>
+
+<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+<string>Description</string>
+
+<key>NSLocationAlwaysUsageDescription</key>
+<string>Description</string>
