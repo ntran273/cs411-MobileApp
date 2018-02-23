@@ -11,32 +11,6 @@ import UIKit
 class ItemsViewController: UITableViewController{
     var itemStore: ItemStore!
     
-    @IBAction func addNewItem(_ sender:UIButton){
-//        let lastRow = tableView.numberOfRows(inSection: 0)
-//        let indexPath = IndexPath(row: lastRow, section: 0)
-//
-//        tableView.insertRows(at: [indexPath], with: .automatic)
-        
-        let newItem = itemStore.createItem()
-        if let index = itemStore.allItems.index(of: newItem){
-            let indexPath = IndexPath(row: index, section: 0)
-            tableView.insertRows(at: [indexPath], with: .automatic)
-        }
-    }
-    
-    @IBAction func toggleEditingMode(_ sender:UIButton){
-        sender.setTitle((isEditing ? "Edit" : "Done"), for: .normal)
-        setEditing(!isEditing, animated: true)
-        
-//        if(isEditing){
-//            sender.setTitle("Edit", for: .normal)
-//            setEditing(false, animated: true)
-//        }else{
-//            sender.setTitle("Done", for: .normal)
-//            setEditing(true, animated: true)
-//        }
-    }
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int)-> Int {
         return itemStore.allItems.count
     }
@@ -64,5 +38,5 @@ class ItemsViewController: UITableViewController{
         tableView.scrollIndicatorInsets = insets
     }
     
-    
+    //CellForRowAt- if we add the last cell, we are going to say no more item
 }
