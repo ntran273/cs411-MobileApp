@@ -77,7 +77,16 @@ class ConversionViewController : UIViewController, UITextFieldDelegate {
         if existingTextHasDecimalSeparator != nil && replacementTextHasDecimalSeparator != nil {
             return false
         } else {
-            return true
+            //disable character and comma or a period based on localization
+            if CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: string)) || (string.range(of: decimalSeparator) != nil) {
+                // If incoming character is a decimalDigit or a period or comma (based on localization), return true
+                return true
+            }
+            else {
+                // If a letter is detected, returns false
+                return false
+            }
+            //return true
         }
     }
     
@@ -96,7 +105,7 @@ class ConversionViewController : UIViewController, UITextFieldDelegate {
         let date = Date()
         let calendar = Calendar.current
         let hour = calendar.component(.hour, from: date)
-        if(hour > 6 && hour < 19){
+        if(hour > 6 && hour < 17){
             view.backgroundColor = UIColor.white
         }else{
             view.backgroundColor = UIColor.black
@@ -106,28 +115,5 @@ class ConversionViewController : UIViewController, UITextFieldDelegate {
         
         
     }
-    
-
-    
-    
-    
-    
-    
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated);
-//        print("ConversionViewController's view did appear...");
-//
-//    }
-//
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewDidAppear(animated);
-//        print("ConversionViewController's view will disappear...");
-//
-//    }
-//    override func viewDidDisappear(_ animated: Bool) {
-//        super.viewDidAppear(animated);
-//        print("ConversionViewController's view did disappear...");
-//
-//    }
 }
 
