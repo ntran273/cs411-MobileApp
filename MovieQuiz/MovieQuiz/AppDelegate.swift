@@ -16,6 +16,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        let movieStore = MovieStore()
+        let navController = window!.rootViewController as! UINavigationController
+        let categoryController = navController.topViewController as! CategoryViewController
+        categoryController.movieStore = movieStore
+        //let navController = window!.rootViewController as! UINavigationController
+        //let categoryMovies = navController.topViewController as! CategoryViewController
+
         return true
     }
 
