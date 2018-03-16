@@ -29,7 +29,6 @@ class CategoryViewController: UITableViewController, UISearchBarDelegate {
         typeArray.append(nameType(images: "fantasy.png", name: "Fantasy", type: .gerne))
         typeArray.append(nameType(images: "horror.png", name: "Horror", type: .gerne))
         typeArray.append(nameType(images: "scifi.png", name: "Sci-Fi", type: .gerne))
-        typeArray.append(nameType(images: "romantic.png", name: "Romantic", type: .gerne))
 
         //Actor
         typeArray.append(nameType(images: "bradpitt.png", name: "Brad-Pitt", type: .actor))
@@ -40,8 +39,8 @@ class CategoryViewController: UITableViewController, UISearchBarDelegate {
         //typeArray.append(nameType(images: "action.png", name: "Romantic", type: .gerne))
 
         //YEAR
-        typeArray.append(nameType(images: "action.png", name: "80s", type: .year))
-        typeArray.append(nameType(images: "action.png", name: "90s", type: .year))
+        typeArray.append(nameType(images: "80s", name: "80s", type: .year))
+        typeArray.append(nameType(images: "90s", name: "90s", type: .year))
 
         //Set currentTypeArray = typeArray
         currenttypeArray = typeArray
@@ -50,9 +49,10 @@ class CategoryViewController: UITableViewController, UISearchBarDelegate {
     //Set Up Search Bar
     private func setUpSearchBar(){
         searchBar.delegate = self
+       //searchBar.setShowsCancelButton(true, animated: true)
+
     }
     
-    //Set Text Search
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
         //if searchtext is emoty, reload data
         guard !searchText.isEmpty else{
@@ -65,6 +65,22 @@ class CategoryViewController: UITableViewController, UISearchBarDelegate {
         })
         //Reload Data after search
         table.reloadData()
+    }
+
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        searchBar.setShowsCancelButton(true, animated: true)
+        return true
+    }
+   
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        //Set text blank after search bar cancel button clicked
+        searchBar.text = ""
+        // Hide the cancel button
+        searchBar.setShowsCancelButton(false, animated: true)
+        currenttypeArray = typeArray
+        table.reloadData()
+
+        searchBar.endEditing(true)
 
     }
     
@@ -91,6 +107,7 @@ class CategoryViewController: UITableViewController, UISearchBarDelegate {
         table.reloadData()
     }
     
+  
     
     //Read data from CSV file
     func readDataFromCSV(fileName:String, fileType: String)-> String!{
@@ -127,6 +144,7 @@ class CategoryViewController: UITableViewController, UISearchBarDelegate {
         return result
     }
     
+    let searchController = UISearchController(searchResultsController: nil)
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpType()
@@ -144,12 +162,18 @@ class CategoryViewController: UITableViewController, UISearchBarDelegate {
     
         csvRows.remove(at: csvRows.count - 1)
         
+        //Add movies by rows, "Img,Title,Type"
         for i in 0 ..< csvRows.count{
             movies.append(Movie(images: csvRows[i][0], title: csvRows[i][1], type: csvRows[i][2]))
         }
         
-        print(movies[0].images)
-    }
+        
+        //Testing Search Bar Controller
+//        searchController.searchResultsUpdater = self
+//        searchController.dimsBackgroundDuringPresentation = false
+//        definesPresentationContext = true
+//        table.tableHeaderView = searchController.searchBar
+}
     
     
     //Number of Type Rows in section

@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MovieQuiz/DetailViewController.swift"
-            timestampString = "542340057.842317"
+            timestampString = "542482566.85454"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "300"
-            endingLineNumber = "300"
+            startingLineNumber = "348"
+            endingLineNumber = "348"
             landmarkName = "showNextQuestion(_:)"
             landmarkType = "7">
          </BreakpointContent>
