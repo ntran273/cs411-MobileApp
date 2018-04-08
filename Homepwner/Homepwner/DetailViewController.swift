@@ -15,12 +15,38 @@ class DetailViewController : UIViewController, UITextFieldDelegate, UINavigation
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var imageView: UIImageView!
     
+    
     //Function take picture
     @IBAction func takePicture(_ sender: UIBarButtonItem) {
         let imagePicker = UIImagePickerController()
         
+        //Chapter 15: Bronze Chllagen Editing an image
+        imagePicker.allowsEditing = true
+
+        
         if UIImagePickerController.isSourceTypeAvailable(.camera){
             imagePicker.sourceType = .camera
+            
+            let cameraOverlay = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+            imagePicker.cameraOverlayView = cameraOverlay
+            //Chapter 15: Gold Challenge Overlayview
+//            let overlayView = UIView(frame: imagePicker.cameraOverlayView!.frame)
+            
+            
+//            let crosshairLabel = UILabel()
+//            crosshairLabel.text = "+"
+//            crosshairLabel.font = UIFont.systemFont(ofSize: 50)
+//            crosshairLabel.translatesAutoresizingMaskIntoConstraints = false
+//            overlayView.addSubview(crosshairLabel)
+//
+//            crosshairLabel.centerXAnchor.constraint(equalTo: overlayView.centerXAnchor).isActive = true
+//            crosshairLabel.centerYAnchor.constraint(equalTo: overlayView.centerYAnchor).isActive = true
+//
+//            // To avoid blocking the underneath default camera controls
+//            overlayView.isUserInteractionEnabled = false
+//
+//            imagePicker.cameraOverlayView = overlayView
+            
         }else{
             imagePicker.sourceType = .photoLibrary
         }
@@ -30,10 +56,18 @@ class DetailViewController : UIViewController, UITextFieldDelegate, UINavigation
         present(imagePicker, animated: true, completion: nil)
     }
     
+    //Chapter 15: Silver Challenge - Removing an image
+    @IBAction func DeletePicture(_ sender: UIBarButtonItem) {
+        let key = item.itemKey
+        imageStore.deleteImage(forKey: key)
+        imageView.image = imageStore.image(forKey: key)
+    }
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]){
         
+        //Chapter 15: Bronze Chllagen Editing an image
         //Get picked image from info dictionary
-        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        let image = info[UIImagePickerControllerEditedImage] as! UIImage
         
         // Store the image in the ImageStore for the item's key
         imageStore.setImage(image, forKey: item.itemKey)
@@ -43,6 +77,7 @@ class DetailViewController : UIViewController, UITextFieldDelegate, UINavigation
         
         //Take image picker off the screen
         dismiss(animated: true, completion: nil)
+
     }
     
     var item: Item! {didSet {
@@ -111,5 +146,12 @@ class DetailViewController : UIViewController, UITextFieldDelegate, UINavigation
         return true
     }
     
+    //Chapter 14: Gold Challenge
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "SetDate" {
+            let chooseDateViewController = segue.destination as! ChooseDateViewController
+            chooseDateViewController.item = item
+        }
+    }
 
 }

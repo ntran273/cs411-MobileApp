@@ -10,7 +10,7 @@ import UIKit
 
 class ItemStore {
     
-    var allItems: [Item] = []
+    var allItems: [NSObject] = []
     let itemArchiveURL: URL = {
         let documentsDirectories =
             FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
@@ -40,8 +40,9 @@ class ItemStore {
     
     @discardableResult func createItem() -> Item {
         let newItem = Item(random: true)
-        
-        allItems.append(newItem)
+        allItems.insert(newItem, at: 0)
+
+        //allItems.append(newItem)
         
         return newItem
     }
@@ -57,6 +58,9 @@ class ItemStore {
             NSKeyedUnarchiver.unarchiveObject(withFile: itemArchiveURL.path) as? [Item]{
             allItems = archivedItems
         }
+        let item = zeroItem(name: "No more items!")
+        allItems.append(item)
+
     }
     
    

@@ -37,7 +37,7 @@ class ItemsViewController: UITableViewController {
                 let item = itemStore.allItems[row]
                 let detailViewController
                     = segue.destination as! DetailViewController
-                detailViewController.item = item
+                detailViewController.item = item as! Item
                 detailViewController.imageStore = imageStore
             }
         default:
@@ -48,8 +48,23 @@ class ItemsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        let imageName = "bg"
+        let image = UIImage(named: imageName)
+
+        let backView = UIImageView(image: image!)
+        backView.contentMode = .scaleAspectFit
+
+//        let color = UIColor(red: 1, green: 0.95, blue: 0.85, alpha: 1)
+//        tableView.backgroundColor = color
+
+        tableView.backgroundView = backView
+        tableView.backgroundView?.isOpaque = false
+        
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 65
+        
+        
     }
     
     override func tableView(_ tableView: UITableView,
@@ -66,38 +81,74 @@ class ItemsViewController: UITableViewController {
         if editingStyle == .delete {
             let item = itemStore.allItems[indexPath.row]
             
-            
-            let title = "Delete \(item.name)?"
-            let message = "Are you sure you want to delete this item?"
-            
-            let ac = UIAlertController(title: title,
-                                       message: message,
-                                       preferredStyle: .actionSheet)
-            
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            ac.addAction(cancelAction)
-            
-            let deleteAction = UIAlertAction(title: "Delete", style: .destructive,
-                                             handler: { (action) -> Void in
-                                                // Remove the item from the store
-                                                self.itemStore.removeItem(item)
-                                                
-                                                //Remove the item's image from the image store
-                                                self.imageStore.deleteImage(forKey: item.itemKey)
-                                                
-                                                // Also remove that row from the table view with an animation
-                                                self.tableView.deleteRows(at: [indexPath], with: .automatic)
-            })
-            ac.addAction(deleteAction)
-            
-            // Present the alert controller
-            present(ac, animated: true, completion: nil)
+            if let baseItem = item as? Item {
+                let title = "Delete \(baseItem.name)?"
+                let message = "Are you sure you want to delete this item?"
+                
+                let ac = UIAlertController(title: title,
+                                           message: message,
+                                           preferredStyle: .actionSheet)
+                
+                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                ac.addAction(cancelAction)
+                
+                let deleteAction = UIAlertAction(title: "Delete", style: .destructive,
+                                                 handler: { (action) -> Void in
+                                                    // Remove the item from the store
+                                                    self.itemStore.removeItem(baseItem)
+                                                    
+                                                    //Remove the item's image from the image store
+                                                    self.imageStore.deleteImage(forKey: baseItem.itemKey)
+                                                    
+                                                    // Also remove that row from the table view with an animation
+                                                    self.tableView.deleteRows(at: [indexPath], with: .automatic)
+                })
+                ac.addAction(deleteAction)
+                
+                // Present the alert controller
+                present(ac, animated: true, completion: nil)
+            }
+           
         }
     }
     
-    //Bronze Challenge - Rename Delete to Remove
+    //Chapter 11 - Bronze Challenge - Rename Delete to Remove
     override func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
         return "Remove"
+    }
+    
+    //Chapter 11 - Silver Challenge - Preventing reordering -- last row cannot be reordered
+    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        if indexPath.row == (itemStore.allItems.count - 1) {
+            return false
+        }
+        return true
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        if indexPath.row == (itemStore.allItems.count - 1) {
+            return false
+        }
+        return true
+    }
+    
+    //Chapter 11 - Gold Challenge - Really Preventing reordering - rows cannot be dragged below last
+    override func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestIndexPath: IndexPath) -> IndexPath {
+        if proposedDestIndexPath.row == (itemStore.allItems.count - 1) {
+            var allowedPath = proposedDestIndexPath
+            allowedPath.row -= 1
+            return allowedPath
+        }
+        return proposedDestIndexPath
+    }
+    
+    // Set constant row no editing mode
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        if indexPath.row == (itemStore.allItems.count - 1) {
+            return .none
+        }
+        return .delete
     }
     
     //Chap14
@@ -113,18 +164,42 @@ class ItemsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView,
                             cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Create an instance of UITableViewCell, with default appearance
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! ItemCell
-        
-        // Set the text on the cell with the description of the item
-        // that is at the nth index of items, where n = row this cell
-        // will appear in on the tableview
         let item = itemStore.allItems[indexPath.row]
-        
-        cell.nameLabel.text = item.name
-        cell.serialNumberLabel.text = item.serialNumber
-        cell.valueLabel.text = "$\(item.valueInDollars)"
-        cell.valueLabel.textColor = (item.valueInDollars < 50 ? UIColor.green : UIColor.red)
-        return cell
+        //10:silver
+        if indexPath.row == (itemStore.allItems.count - 1) {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "UINoItemViewCell", for: indexPath)
+            if let stubItem = item as? zeroItem {
+                cell.textLabel?.text = stubItem.name
+                cell.textLabel?.font = UIFont(name:"Arial", size: 18)
+                cell.textLabel?.textAlignment = .center
+            }
+            return cell
+
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! ItemCell
+            
+            if let baseItem = item as? Item {
+                let font = UIFont(name:"Arial", size: 20)
+                
+                cell.nameLabel.text = baseItem.name
+                cell.nameLabel.font = font
+                cell.serialNumberLabel.text = baseItem.serialNumber
+                cell.valueLabel.text = "\(baseItem.valueInDollars)$"
+                
+                //Chapter 12 - Bronze Challenge - Cell Colors
+                if baseItem.valueInDollars > 50 {
+                    cell.valueLabel.textColor = UIColor.green
+                } else {
+                    cell.valueLabel.textColor = UIColor.red
+                }
+                cell.valueLabel.font = font
+            }
+            let backColor = UIColor(white: 1, alpha: 0.7)
+            cell.backgroundColor = backColor
+            
+            return cell
+        }
+    
     }
     
     required init?(coder aDecoder: NSCoder){
