@@ -26,26 +26,12 @@ class DetailViewController : UIViewController, UITextFieldDelegate, UINavigation
         
         if UIImagePickerController.isSourceTypeAvailable(.camera){
             imagePicker.sourceType = .camera
+
+            //Chapter 15 Gold Challenge - Camera Overlay
             
             let cameraOverlay = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
             imagePicker.cameraOverlayView = cameraOverlay
-            //Chapter 15: Gold Challenge Overlayview
-//            let overlayView = UIView(frame: imagePicker.cameraOverlayView!.frame)
-            
-            
-//            let crosshairLabel = UILabel()
-//            crosshairLabel.text = "+"
-//            crosshairLabel.font = UIFont.systemFont(ofSize: 50)
-//            crosshairLabel.translatesAutoresizingMaskIntoConstraints = false
-//            overlayView.addSubview(crosshairLabel)
-//
-//            crosshairLabel.centerXAnchor.constraint(equalTo: overlayView.centerXAnchor).isActive = true
-//            crosshairLabel.centerYAnchor.constraint(equalTo: overlayView.centerYAnchor).isActive = true
-//
-//            // To avoid blocking the underneath default camera controls
-//            overlayView.isUserInteractionEnabled = false
-//
-//            imagePicker.cameraOverlayView = overlayView
+
             
         }else{
             imagePicker.sourceType = .photoLibrary

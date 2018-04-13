@@ -49,14 +49,14 @@ class ItemsViewController: UITableViewController {
         super.viewDidLoad()
         
         
-        let imageName = "bg"
+        let imageName = "wood"
         let image = UIImage(named: imageName)
 
         let backView = UIImageView(image: image!)
-        backView.contentMode = .scaleAspectFit
+        backView.contentMode = .scaleAspectFill
 
-//        let color = UIColor(red: 1, green: 0.95, blue: 0.85, alpha: 1)
-//        tableView.backgroundColor = color
+        let color = UIColor(red: 1, green: 0.95, blue: 0.85, alpha: 1)
+        tableView.backgroundColor = color
 
         tableView.backgroundView = backView
         tableView.backgroundView?.isOpaque = false

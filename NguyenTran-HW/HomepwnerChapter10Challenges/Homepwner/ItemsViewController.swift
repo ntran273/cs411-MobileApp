@@ -53,7 +53,9 @@ class ItemsViewController: UITableViewController{
         
         let statusBarHeight = UIApplication.shared.statusBarFrame.height
         
+        //Chapter 10 - Gold Challenge - Customize the table each row 60pt, last row 44
         let insets = UIEdgeInsets(top: statusBarHeight, left: 0, bottom: 0, right: 0)
+       
         tableView.contentInset = insets
         tableView.scrollIndicatorInsets = insets
         tableView.insertSections([0,1], with: UITableViewRowAnimation.left)
@@ -68,14 +70,17 @@ class ItemsViewController: UITableViewController{
         tableView.backgroundView = backView
         tableView.backgroundView?.isOpaque = false
         
+        //create Footer View last row 44
         let footerView = UITextView(frame: CGRect(x: 0, y: 0, width: 200, height: 44))
-        footerView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.15)
+        footerView.backgroundColor = UIColor(red: 0, green: 0, blue: 2, alpha: 0.15)
         footerView.textAlignment = .center
         footerView.autoresizingMask = [.flexibleWidth, .flexibleLeftMargin, .flexibleRightMargin]
       
+        //Silver Challenge - Nomore items last row, no edit
         footerView.text = "No more items!"
         footerView.font = UIFont(name:"Arial", size: 20)
         tableView.tableFooterView = footerView
+        tableView.tableFooterView?.isUserInteractionEnabled = false
     }
     
     override public func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
